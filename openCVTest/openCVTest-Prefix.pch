@@ -1,0 +1,20 @@
+//
+//  openCVTest-Prefix.pch
+//  openCVTest
+//
+//  Created by 김운하 on 2015. 10. 12..
+//  Copyright © 2015년 bnsworks. All rights reserved.
+//
+
+#ifndef openCVTest_Prefix_h
+#define openCVTest_Prefix_h
+
+#ifdef __cplusplus
+#import <opencv2/opencv.hpp>
+#endif
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#endif
+
+#endif /* openCVTest_Prefix_h */
