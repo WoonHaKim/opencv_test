@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,15 +15,15 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ze0-Cq-GL2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ze0-Cq-GL2">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-b3-njp">
-                                <rect key="frame" x="190" y="636" width="34" height="30"/>
+                                <rect key="frame" x="283" y="500" width="34" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Start"/>
                                 <connections>
@@ -29,26 +31,66 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzo-ve-VVc">
-                                <rect key="frame" x="191" y="674" width="32" height="30"/>
+                                <rect key="frame" x="284" y="538" width="32" height="30"/>
                                 <animations/>
                                 <state key="normal" title="Stop"/>
                                 <connections>
                                     <action selector="stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rQQ-f2-HyP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGs-0R-hYI">
+                                <rect key="frame" x="349" y="525" width="220" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Who" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-e2-oqq">
+                                <rect key="frame" x="26" y="31" width="36" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kp-km-wsT">
+                                <rect key="frame" x="28" y="60" width="40" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7an-wg-Hhg">
+                                <rect key="frame" x="28" y="521" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Flip"/>
+                                <connections>
+                                    <action selector="btnFlip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="73t-6X-rZD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3hC-b3-njp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3pJ-eN-el3"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3hC-b3-njp" secondAttribute="bottom" constant="70" id="6Lg-La-WaX"/>
-                            <constraint firstItem="dzo-ve-VVc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UV1-gl-I7B"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dzo-ve-VVc" secondAttribute="bottom" constant="32" id="xGd-y3-r81"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="7an-wg-Hhg" secondAttribute="bottom" constant="49" id="0JX-jQ-S1u"/>
+                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="1qJ-X6-9ga"/>
+                            <constraint firstItem="wGa-e2-oqq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="3qe-Ra-06S"/>
+                            <constraint firstItem="OGs-0R-hYI" firstAttribute="leading" secondItem="3hC-b3-njp" secondAttribute="trailing" constant="32" id="4LZ-jl-RCf"/>
+                            <constraint firstItem="dzo-ve-VVc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="56Y-z5-xMH"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3hC-b3-njp" secondAttribute="bottom" constant="70" id="5YK-hx-MXN"/>
+                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Br-bQ-X4P"/>
+                            <constraint firstItem="1kp-km-wsT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="8cU-5t-Ibj"/>
+                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="TO1-Ou-XgY"/>
+                            <constraint firstItem="3hC-b3-njp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WGW-UR-EOZ"/>
+                            <constraint firstItem="7an-wg-Hhg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="eQ6-Mt-Fhj"/>
+                            <constraint firstAttribute="height" secondItem="ze0-Cq-GL2" secondAttribute="height" id="jzO-PR-Cdw"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dzo-ve-VVc" secondAttribute="bottom" constant="32" id="nSO-Hf-LjP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="OGs-0R-hYI" secondAttribute="bottom" constant="54" id="p2W-df-B8P"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="detLabel" destination="OGs-0R-hYI" id="Fqd-PW-3sJ"/>
+                        <outlet property="levelLabel" destination="1kp-km-wsT" id="CRp-jl-8Dg"/>
                         <outlet property="sampleView" destination="ze0-Cq-GL2" id="6jd-2h-at4"/>
+                        <outlet property="whoLabel" destination="wGa-e2-oqq" id="sSo-2z-TEM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

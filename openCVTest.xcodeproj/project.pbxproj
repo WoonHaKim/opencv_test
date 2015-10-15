@@ -28,9 +28,15 @@
 		1BA2B18C1BCBA4B7005011A3 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA2B18B1BCBA4B7005011A3 /* opencv2.framework */; settings = {ASSET_TAGS = (); }; };
 		1BA2B18E1BCBAF1D005011A3 /* un1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B18D1BCBAF1D005011A3 /* un1.png */; settings = {ASSET_TAGS = (); }; };
 		1BA2B1901BCC99E5005011A3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BA2B18F1BCC99E5005011A3 /* QuartzCore.framework */; };
-		1BA2B19A1BCCCE6C005011A3 /* key.png in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1991BCCCE6C005011A3 /* key.png */; settings = {ASSET_TAGS = (); }; };
 		1BA2B19C1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B19B1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml */; settings = {ASSET_TAGS = (); }; };
 		1BA2B19D1BCCED98005011A3 /* haarcascade_frontalface_alt2.xml in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B19B1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml */; };
+		1BA2B19F1BCE1448005011A3 /* haarcascade_eye.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B19E1BCE1448005011A3 /* haarcascade_eye.xml */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1A11BCE1468005011A3 /* haarcascade_upperbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1A01BCE1468005011A3 /* haarcascade_upperbody.xml */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1A31BCE146F005011A3 /* haarcascade_lowerbody.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1A21BCE146F005011A3 /* haarcascade_lowerbody.xml */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1A51BCE1475005011A3 /* haarcascade_profileface.xml in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1A41BCE1475005011A3 /* haarcascade_profileface.xml */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1A71BCE3711005011A3 /* key.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1A61BCE3711005011A3 /* key.jpg */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1AB1BCE3BF0005011A3 /* UIImageCVMatConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,8 +87,17 @@
 		1BA2B18B1BCBA4B7005011A3 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 		1BA2B18D1BCBAF1D005011A3 /* un1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = un1.png; sourceTree = "<group>"; };
 		1BA2B18F1BCC99E5005011A3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		1BA2B1991BCCCE6C005011A3 /* key.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = key.png; sourceTree = "<group>"; };
 		1BA2B19B1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_frontalface_alt2.xml; sourceTree = "<group>"; };
+		1BA2B19E1BCE1448005011A3 /* haarcascade_eye.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_eye.xml; sourceTree = "<group>"; };
+		1BA2B1A01BCE1468005011A3 /* haarcascade_upperbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_upperbody.xml; sourceTree = "<group>"; };
+		1BA2B1A21BCE146F005011A3 /* haarcascade_lowerbody.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_lowerbody.xml; sourceTree = "<group>"; };
+		1BA2B1A41BCE1475005011A3 /* haarcascade_profileface.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = haarcascade_profileface.xml; sourceTree = "<group>"; };
+		1BA2B1A61BCE3711005011A3 /* key.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = key.jpg; sourceTree = "<group>"; };
+		1BA2B1A91BCE3BCA005011A3 /* UIImageCVMatConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = UIImageCVMatConverter.hpp; sourceTree = "<group>"; };
+		1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UIImageCVMatConverter.mm; sourceTree = "<group>"; };
+		1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tracker_opencv.cpp; sourceTree = "<group>"; };
+		1BA2B1AD1BCF33DE005011A3 /* tracker_opencv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tracker_opencv.h; sourceTree = "<group>"; };
+		1BA2B1AF1BCF457E005011A3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = constants.h; path = ../constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +153,12 @@
 				1BA2B15C1BCB9C11005011A3 /* openCVTestTests */,
 				1BA2B1671BCB9C11005011A3 /* openCVTestUITests */,
 				1BA2B13E1BCB9C11005011A3 /* Products */,
-				1BA2B1991BCCCE6C005011A3 /* key.png */,
+				1BA2B1A61BCE3711005011A3 /* key.jpg */,
 				1BA2B19B1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml */,
+				1BA2B1A41BCE1475005011A3 /* haarcascade_profileface.xml */,
+				1BA2B19E1BCE1448005011A3 /* haarcascade_eye.xml */,
+				1BA2B1A01BCE1468005011A3 /* haarcascade_upperbody.xml */,
+				1BA2B1A21BCE146F005011A3 /* haarcascade_lowerbody.xml */,
 				1BA2B18B1BCBA4B7005011A3 /* opencv2.framework */,
 			);
 			sourceTree = "<group>";
@@ -157,8 +176,12 @@
 		1BA2B13F1BCB9C11005011A3 /* openCVTest */ = {
 			isa = PBXGroup;
 			children = (
+				1BA2B1A81BCE3BB1005011A3 /* Custom Converter */,
 				1BA2B1431BCB9C11005011A3 /* AppDelegate.h */,
+				1BA2B1AF1BCF457E005011A3 /* constants.h */,
 				1BA2B1441BCB9C11005011A3 /* AppDelegate.m */,
+				1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */,
+				1BA2B1AD1BCF33DE005011A3 /* tracker_opencv.h */,
 				1BA2B1461BCB9C11005011A3 /* ViewController.hpp */,
 				1BA2B1471BCB9C11005011A3 /* ViewController.mm */,
 				1BA2B1491BCB9C11005011A3 /* Main.storyboard */,
@@ -197,6 +220,15 @@
 				1BA2B16A1BCB9C11005011A3 /* Info.plist */,
 			);
 			path = openCVTestUITests;
+			sourceTree = "<group>";
+		};
+		1BA2B1A81BCE3BB1005011A3 /* Custom Converter */ = {
+			isa = PBXGroup;
+			children = (
+				1BA2B1A91BCE3BCA005011A3 /* UIImageCVMatConverter.hpp */,
+				1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */,
+			);
+			name = "Custom Converter";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,10 +335,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BA2B19C1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml in Resources */,
+				1BA2B1A51BCE1475005011A3 /* haarcascade_profileface.xml in Resources */,
+				1BA2B1A11BCE1468005011A3 /* haarcascade_upperbody.xml in Resources */,
 				1BA2B1531BCB9C11005011A3 /* LaunchScreen.storyboard in Resources */,
 				1BA2B1501BCB9C11005011A3 /* Assets.xcassets in Resources */,
-				1BA2B19A1BCCCE6C005011A3 /* key.png in Resources */,
+				1BA2B1A71BCE3711005011A3 /* key.jpg in Resources */,
+				1BA2B19F1BCE1448005011A3 /* haarcascade_eye.xml in Resources */,
 				1BA2B18E1BCBAF1D005011A3 /* un1.png in Resources */,
+				1BA2B1A31BCE146F005011A3 /* haarcascade_lowerbody.xml in Resources */,
 				1BA2B14B1BCB9C11005011A3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,8 +368,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */,
 				1BA2B19D1BCCED98005011A3 /* haarcascade_frontalface_alt2.xml in Sources */,
 				1BA2B1481BCB9C11005011A3 /* ViewController.mm in Sources */,
+				1BA2B1AB1BCE3BF0005011A3 /* UIImageCVMatConverter.mm in Sources */,
 				1BA2B1451BCB9C11005011A3 /* AppDelegate.m in Sources */,
 				1BA2B14E1BCB9C11005011A3 /* openCVTest.xcdatamodeld in Sources */,
 				1BA2B1421BCB9C11005011A3 /* main.mm in Sources */,
