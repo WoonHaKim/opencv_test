@@ -66,6 +66,14 @@
                                     <action selector="btnFlip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="73t-6X-rZD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-tr-x6B">
+                                <rect key="frame" x="471" y="41" width="116" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Add Person View"/>
+                                <connections>
+                                    <action selector="btnAddSubView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="y0p-30-UAQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -96,6 +104,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="305" y="429"/>
+        </scene>
+        <!--Sub Mini View Controller-->
+        <scene sceneID="OI1-D5-3HN">
+            <objects>
+                <viewController id="eBq-ge-HYC" customClass="subMiniViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zpa-UA-SUK"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZV1-ly-GV2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gt7-qd-7ZY">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="80"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tb-hT-rf3">
+                                <rect key="frame" x="9" y="51" width="66" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Person_name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wbT-OI-z6F">
+                                <rect key="frame" x="9" y="20" width="103" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="80"/>
+                    <connections>
+                        <outlet property="Location" destination="8tb-hT-rf3" id="bd1-lB-2v0"/>
+                        <outlet property="PersonName" destination="wbT-OI-z6F" id="1cA-Dh-B6o"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bGw-Ot-Rs7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1091" y="361"/>
         </scene>
     </scenes>
 </document>

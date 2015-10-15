@@ -9,6 +9,7 @@
 
 #import "ViewController.hpp"
 #import "UIImageCVMatConverter.hpp"
+#import "subMiniViewController.hpp"
 
 @interface ViewController ()
 
@@ -53,6 +54,9 @@
     _camera.defaultFPS = DEFAULT_FPS;
     
     [_camera start];
+}
+- (IBAction)btnAddSubView:(id)sender {
+    subMiniViewController *personViewController;
 }
 - (IBAction)btnFlip:(id)sender {
     [_camera stop];
@@ -121,6 +125,11 @@
 }
 
 - (void)updateQueue:(std::vector<cv::Rect>)face_pos_v{
+    //이동 거리 기반 큐를 업데이트 한다.
+    //사람이 없으면?->추가, 원본을 버림
+    //사람이 있으면?->원본 대체
+    //
+    
     double propotionX,propotionY;
     if (face_prev.size()!=0){
         for (int i=0;i<(int)face_prev.size();i++){

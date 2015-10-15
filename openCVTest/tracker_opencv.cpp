@@ -34,8 +34,8 @@ void tracker_opencv::init(Mat img, Rect rc)
 		cvtColor(img, gray, CV_BGR2GRAY);
 
 		float vrange[] = {0,256};
-		const float* phranges = vrange;
-		Mat roi(gray, rc);
+		Mat roi(gray, rc);		const float* phranges = vrange;
+
 		calcHist(&roi, 1, 0, mask, m_model, 1, &m_param.hist_bins, &phranges);
 	}
 	else if(m_param.color_model==CM_HUE)

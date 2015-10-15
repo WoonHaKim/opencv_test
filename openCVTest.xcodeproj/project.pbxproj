@@ -37,6 +37,7 @@
 		1BA2B1A71BCE3711005011A3 /* key.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BA2B1A61BCE3711005011A3 /* key.jpg */; settings = {ASSET_TAGS = (); }; };
 		1BA2B1AB1BCE3BF0005011A3 /* UIImageCVMatConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */; settings = {ASSET_TAGS = (); }; };
 		1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BA2B1B21BCF7050005011A3 /* subMiniViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tracker_opencv.cpp; sourceTree = "<group>"; };
 		1BA2B1AD1BCF33DE005011A3 /* tracker_opencv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tracker_opencv.h; sourceTree = "<group>"; };
 		1BA2B1AF1BCF457E005011A3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = constants.h; path = ../constants.h; sourceTree = "<group>"; };
+		1BA2B1B01BCF7050005011A3 /* subMiniViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subMiniViewController.hpp; sourceTree = "<group>"; };
+		1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = subMiniViewController.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 				1BA2B1541BCB9C11005011A3 /* Info.plist */,
 				1BA2B14C1BCB9C11005011A3 /* openCVTest.xcdatamodeld */,
 				1BA2B1401BCB9C11005011A3 /* Supporting Files */,
+				1BA2B1B01BCF7050005011A3 /* subMiniViewController.hpp */,
+				1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */,
 			);
 			path = openCVTest;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BA2B1B21BCF7050005011A3 /* subMiniViewController.mm in Sources */,
 				1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */,
 				1BA2B19D1BCCED98005011A3 /* haarcascade_frontalface_alt2.xml in Sources */,
 				1BA2B1481BCB9C11005011A3 /* ViewController.mm in Sources */,
