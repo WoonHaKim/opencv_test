@@ -101,6 +101,7 @@
 		1BA2B1AF1BCF457E005011A3 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = constants.h; path = ../constants.h; sourceTree = "<group>"; };
 		1BA2B1B01BCF7050005011A3 /* subMiniViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subMiniViewController.hpp; sourceTree = "<group>"; };
 		1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = subMiniViewController.mm; sourceTree = "<group>"; };
+		1BA2B1B31BD4878A005011A3 /* geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +184,7 @@
 				1BA2B1431BCB9C11005011A3 /* AppDelegate.h */,
 				1BA2B1AF1BCF457E005011A3 /* constants.h */,
 				1BA2B1441BCB9C11005011A3 /* AppDelegate.m */,
+				1BA2B1B31BD4878A005011A3 /* geometry.h */,
 				1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */,
 				1BA2B1AD1BCF33DE005011A3 /* tracker_opencv.h */,
 				1BA2B1461BCB9C11005011A3 /* ViewController.hpp */,

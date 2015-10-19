@@ -11,6 +11,12 @@
 #import "UIImageCVMatConverter.hpp"
 #import "subMiniViewController.hpp"
 
+#include "opencv2/core/core.hpp"
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/video/video.hpp"
+
+
 @interface ViewController ()
 
 @end
@@ -18,11 +24,79 @@
 @implementation ViewController
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
+}
+- (void)orientationChanged:(NSNotification *)notification{
+    [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+- (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
+    [_camera adjustLayoutToInterfaceOrientation:orientation];
+/*
+    [_camera stop];
+    switch (orientation)
+    {
+ 
+        case UIInterfaceOrientationPortrait:
+            _camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
+        case UIInterfaceOrientationPortraitUpsideDown:
+        {
+            _camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortraitUpsideDown;
+        }
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            _camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeLeft;
+        case UIInterfaceOrientationLandscapeRight:
+        {
+            _camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationLandscapeRight;
+        }
+            break;
+        case UIInterfaceOrientationUnknown:break;
+    }
+    [_camera start];
+             */
+}
+-(void)viewDidDisappear:(BOOL)animated{
+//    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self loadHaarFiles];
     // Do any additional setup after loading the view, typically from a nib.
+
+    _detLabel.text=@"";
+    _camera = [[CvVideoCamera alloc]initWithParentView:sampleView];
+    _camera.delegate = self;
+    _camera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
+    _camera.defaultAVCaptureVideoOrientation =AVCaptureVideoOrientationPortrait;
+    _camera.rotateVideo = YES;
+
+    if(IS_IPHONE){
+        _camera.defaultFPS = DEFAULT_FPS*3;
+        min_face_size=200;
+        _camera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetPhoto;
+    }
+    else{
+        _camera.defaultFPS = DEFAULT_FPS;
+        min_face_size=100;
+        _camera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetMedium;
+    }
+    
+    [_camera start];
+    
+    isTracking=false;
+    isDetecting=false;
+    no_detect=0;
+    
+    //timer=[NSTimer scheduledTimerWithTimeInterval:TIMER_FACE_REPEAT target:self selector:@selector(showPersonInfo) userInfo:nil repeats:YES];
+    //timer=[NSTimer scheduledTimerWithTimeInterval:TIMER_FACE_REPEAT target:self selector:@selector(updateQueue) userInfo:nil repeats:YES];
+
+    
+    //[self startTrack:temp];
+}
+
+-(void)loadHaarFiles{
     // harrcascade 파일 로드
     NSString * const TFCascadeFilename = @"haarcascade_frontalface_alt2";//Strings of haar file names
     NSString *TF_cascade_name = [[NSBundle mainBundle] pathForResource:TFCascadeFilename ofType:@"xml"];
@@ -44,20 +118,9 @@
         NSLog(@"Could not load Picture key!");
     }
     
-    _detLabel.text=@"";
-    _camera = [[CvVideoCamera alloc]initWithParentView:sampleView];
-    _camera.delegate = self;
-    _camera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionBack;
-    _camera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetMedium;
-    _camera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    _camera.rotateVideo = YES;
-    _camera.defaultFPS = DEFAULT_FPS;
-    
-    [_camera start];
 }
-- (IBAction)btnAddSubView:(id)sender {
-    subMiniViewController *personViewController;
-}
+
+
 - (IBAction)btnFlip:(id)sender {
     [_camera stop];
     if (_camera.defaultAVCaptureDevicePosition==AVCaptureDevicePositionBack){
@@ -78,84 +141,161 @@
 {
     Mat image_copy;
     Mat image_copy2;
-    
+    temp=image;
     image=[self detectFace:image copy:image_copy];
     
+
 }
 -(Mat)detectFace:(Mat)image copy:(Mat)copy_image{
     //Haar cascading을 통하여 얼굴을 잡아낸다.
-    cvtColor(image, copy_image, CV_BGR2GRAY);
-    Mat roi;
-    std::vector<cv::Rect>eye_pos;
-
-    face.detectMultiScale(copy_image, face_pos, 1.2,3,0|CV_HAAR_SCALE_IMAGE,cv::Size(min_face_size,min_face_size));
+    //잡아낸 얼굴은 트래커에 전달한다.
     
-
-    for(int i=0; i<(int)face_pos.size() ;i++){
-        roi=copy_image(face_pos[i]);
-       // [self detectPerson:image];
+    dispatch_sync(dispatch_get_main_queue(), ^{
+    face_detect=[self detectFaces:image];
+    std::vector<cv::Mat>roi=[self detectFacesImg:image cood:face_detect];
+    });
         
-        
-        rectangle(image, face_pos[i],cv::Scalar(0,255,0),2);
-        String face_text=[[NSString stringWithFormat:@"Face %d",i]UTF8String];
-        putText( image , face_text ,cvPoint(face_pos[i].x-5,face_pos[i].y-10), FONT_HERSHEY_PLAIN, 0.7f, Scalar(50,50,50) );
-        
-        
-        
-        eye.detectMultiScale(roi, eye_pos, 1.1,2,0|CV_HAAR_SCALE_IMAGE,cv::Size(min_eye_size,min_eye_size));
-
-        for(int j=0; j<(int)eye_pos.size() ;j++){
-            cv::Point center(face_pos[i].x+eye_pos[j].x+(eye_pos[j].width/2),face_pos[i].y+eye_pos[j].y+(eye_pos[j].height/2));
-            int radius=cvRound((eye_pos[j].width+eye_pos[j].height)*0.2);
-            circle(image, center, radius, cv::Scalar(0,0,255),2);
-        }
-        
+    for(int i=0; i<(int)face_detect.size() ;i++){
+       rectangle(image, face_detect[i],cv::Scalar(0,255,0),2);//Detection Rectengle
     }
     
-    if (face_pos.size()>0){
-    [self updateQueue:face_pos];
+    return image;
+ 
+}
+
+-(std::vector<cv::Rect>)detectFaces:(cv::Mat)refImg{
+    Mat copyRefImg;
+    std::vector<cv::Rect>detectFaces_v;
+    
+    cvtColor(refImg, copyRefImg, CV_BGR2GRAY);
+    face.detectMultiScale(copyRefImg, detectFaces_v, 1.2,3,0|CV_HAAR_SCALE_IMAGE,cv::Size(min_face_size,min_face_size));
+
+    return detectFaces_v;
+    
+}
+
+-(std::vector<cv::Mat>)detectFacesImg:(cv::Mat)refImg cood:(std::vector<cv::Rect>)coordinates{
+    Mat copyRefImg;
+    std::vector<cv::Mat>filteredDetectFaces;
+    filteredDetectFaces.clear();
+    for(int i=0; i<(int)coordinates.size() ;i++){
+        Mat roi=refImg(coordinates[i]);
+        filteredDetectFaces.push_back(roi);
     }
+    
+    return filteredDetectFaces;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-(Mat)trackFace:(Mat)image copy:(Mat)copy_image{
+    //인자를 받는다
+    //얼굴을 추적한다
+    //추적에 실패하면 예전 상태로 돌아간다
     return image;
 }
-
-- (void)updateCount{
-    NSLog(@"Faces?: %lu",face_prev.size());
-    self.detLabel.text=[NSString stringWithFormat:@"Faces?: %lu",face_prev.size()];
+- (void)showPersonInfo{
+    float viewPropX=sampleView.frame.size.width/(temp.size().width);
+    float viewPropY=sampleView.frame.size.height/(temp.size().height);
     
+    for (UIView *subView in sampleView.subviews){
+        [subView removeFromSuperview];
+    }
+    UIStoryboard *storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    subMiniViewController *personViewController= [storyboard instantiateViewControllerWithIdentifier:@"infoView"];
+
+    for (int i=0;i<face_prev.size();i++){
+        CGRect contentFrame=CGRectMake((int)(viewPropX*face_prev[i].x),(int)(viewPropY*face_prev[i].y), 200, 60);
+        personViewController.view.frame=contentFrame;
+        if (face_prev.size()!=0 || face_detect.size()!=0) {
+            [sampleView addSubview:personViewController.view];
+        }    
+    }
+}
+- (void)updateCount{
+    self.detLabel.text=[NSString stringWithFormat:@"Tracking: %lu",face_prev.size()];
 }
 
-- (void)updateQueue:(std::vector<cv::Rect>)face_pos_v{
+
+- (void)updateQueue{
     //이동 거리 기반 큐를 업데이트 한다.
     //사람이 없으면?->추가, 원본을 버림
     //사람이 있으면?->원본 대체
     //
     
-    double propotionX,propotionY;
+    
+    int j=0, i=0;
+    std::vector<cv::Rect>face_detect_v=face_detect;
     if (face_prev.size()!=0){
-        for (int i=0;i<(int)face_prev.size();i++){
-            for (int j=0;j<(int)face_pos_v.size();j++){
-                propotionX=(face_prev[i].x-face_pos_v[j].x)/face_prev[i].x;
-                propotionY=(face_prev[i].y-face_pos_v[j].y)/face_prev[i].y;
-                NSLog(@"%d,%d, match:%1.8f",i,j,(propotionX+propotionY)/2);
-                if ((propotionX<PROP_MAX && propotionX>-PROP_MAX)&&(propotionY<PROP_MAX && propotionY>-PROP_MAX)){
-                    self.levelLabel.text=@"Track catch";
-                    NSLog(@"Track catch!");
-                    face_prev[i].x=face_pos_v[i].x;
-                    face_prev[i].y=face_pos_v[i].y;
-                    break;
+        for (j=0;j<(int)face_detect_v.size();j++){
+            for (i=0;i<(int)face_prev.size() ;i++){
+                if (nearPoint(face_prev[i].x, face_prev[i].y, face_detect_v[j].x, face_detect_v[j].y, 600, 800)){
+                    NSLog(@"Track catch!, %d,%d -> %d,%d",face_prev[i].x, face_prev[i].y, face_detect_v[j].x, face_detect_v[j].y);
+                    face_prev[i].x=face_detect_v[j].x;
+                    face_prev[i].y=face_detect_v[j].y;
+                    face_prev[i].width=face_detect_v[j].width;
+                    face_prev[i].height=face_detect_v[j].height;
+                    
                 }
-
-                NSLog(@"No Match");
-           
-                face_prev.erase(face_prev.begin()+i);
-                face_prev.insert(face_prev.begin(),face_pos_v[j]);
-                
             }
+                NSLog(@"No Match");
+                if (face_prev.size()>=face_detect.size()){
+                    face_prev.erase(face_prev.begin()+i);
+                }else{
+                    face_prev.insert(face_prev.begin(),face_detect_v[j]);
+                    
+                
+           }
         }
     }
     else{
-        for (int j=0;j<(int)face_pos_v.size();j++){
-            face_prev.insert(face_prev.begin(),face_pos_v[j]);
+        for (int j=0;j<(int)face_detect_v.size();j++){
+            face_prev.insert(face_prev.begin(),face_detect_v[j]);
         }
     }
     [self updateCount];
@@ -172,13 +312,37 @@
 //    NSString *keyName = [[NSBundle mainBundle] pathForResource:keyFilename ofType:@"jpg"];
 
     IplImage *B = new IplImage([UIImageCVMatConverter cvMatFromUIImage:[UIImage imageNamed:@"key.jpg"]]); // templete를 읽는다.
-    IplImage* C = cvCreateImage( cvSize( B->width - trans->width+1, B->height - trans->height+1 ), IPL_DEPTH_32F, 1 ); // 상관계수를 구할 이미지(C)
+    IplImage* C = cvCreateImage(cvSize( B->width - trans->width+1, B->height - trans->height+1 ), IPL_DEPTH_32F, 1 ); // 상관계수를 구할 이미지(C)
     
     cvMatchTemplate(trans, B, C, CV_TM_CCOEFF_NORMED); // 상관계수를 구하여 C 에 그린다.
     cvMinMaxLoc(C, &min, &max, NULL, &left_top);
     
     
+    
+    
 }
+
+
+- (void)startTrack:(Mat)roi_image{
+    Mat copy_temp;
+    tracker_opencv tracker;
+    cvtColor(temp, roi_image, CV_BGR2GRAY);
+    for (int i=0; i<face_detect.size()  && isTracking==false ; i++) {
+        face_tracker[i].init(roi_image, face_detect[i]);
+        face_tracker[i].run(roi_image, face_detect[i]);
+        isTracking=true;
+    }
+}
+-(void) detatchFace:(Mat)image{
+    for(int i=0; i<(int)face_detect.size() ;i++){
+        Mat roi=image(face_detect[i]);
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            UIImage *roi_img=[UIImageCVMatConverter UIImageFromCVMat:roi];
+            detailView.image=roi_img;
+        });
+    }
+}
+
 
 - (IBAction)stop:(id)sender {
     [_camera stop];

@@ -1,8 +1,3 @@
-///////////////////////////////////////////////////////////////////////
-// OpenCV tracking example.
-// Written by darkpgmr (http://darkpgmr.tistory.com), 2013
-
-#pragma once
 
 // include opencv
 #include "opencv2/core/core.hpp"
@@ -32,6 +27,14 @@ struct tracker_opencv_param
 	}
 };
 
+struct tracker_opencv_obj{
+    
+    int obj_id;
+    Mat obj_ref_pic;
+    cv::Rect obj_track;
+    
+};
+
 class tracker_opencv
 {
 public:
@@ -43,11 +46,12 @@ public:
 
 	void configure();
 	Mat get_bp_image();
+    cv::Rect m_rc;
+
 
 protected:
 	Mat m_model;
 	MatND m_model3d;
 	Mat m_backproj;
-    cv::Rect m_rc;
 	tracker_opencv_param m_param;
 };

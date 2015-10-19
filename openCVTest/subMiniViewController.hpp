@@ -12,5 +12,6 @@
 @interface subMiniViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *PersonName;
 @property (weak, nonatomic) IBOutlet UILabel *Location;
+@property (strong, nonatomic) IBOutlet UIImageView *personImage;
 
 @end

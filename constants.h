@@ -9,8 +9,16 @@
 #ifndef constants_h
 #define constants_h
 
-#define PROP_MAX 0.01
-#define DEFAULT_FPS 60
+#define PROP_MAX 20
+#define DEFAULT_FPS 30
 
+#define TIMER_FACE_REPEAT 0.05
+
+#define TRACKER_TRACKING 0
+#define TRACKER_NOTRACKING -2
+
+
+
+#define IS_IPHONE [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone
 
 #endif /* constants_h */

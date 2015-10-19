@@ -1,6 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
 // OpenCV tracking example.
-// Written by darkpgmr (http://darkpgmr.tistory.com), 2013
 
 
 #include <iostream>
@@ -34,7 +33,8 @@ void tracker_opencv::init(Mat img, Rect rc)
 		cvtColor(img, gray, CV_BGR2GRAY);
 
 		float vrange[] = {0,256};
-		Mat roi(gray, rc);		const float* phranges = vrange;
+		Mat roi(gray, rc);
+        const float* phranges = vrange;
 
 		calcHist(&roi, 1, 0, mask, m_model, 1, &m_param.hist_bins, &phranges);
 	}
@@ -152,6 +152,8 @@ bool tracker_opencv::run(Mat img, Rect& rc)
 
 	return true;
 }
+
+
 
 void tracker_opencv::configure()
 {
