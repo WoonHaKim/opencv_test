@@ -54,6 +54,11 @@ CascadeClassifier eye;
 @interface ViewController : UIViewController<CvVideoCameraDelegate>{
     IBOutlet UIImageView *sampleView;
     IBOutlet UIImageView *detailView;
+    
+//    CMMotionManager *motionManager;
+//    CMAttitude *referenceAttitude;
+    
+    
     CvVideoCamera* videoCamera;
     NSTimer *timer;
     Mat temp;
@@ -65,6 +70,16 @@ CascadeClassifier eye;
     bool isTracking;
     bool isDetecting;
     
+    //feature-detection
+    Mat sample;
+    Mat sample_copy;
+    Mat sampleDesctiptor;
+    std::vector<KeyPoint> sampleKeypoints;
+
+    cv::Ptr<cv::FeatureDetector> ptrDetector;
+    cv::Ptr<cv::DescriptorExtractor> ptrExtractor;
+
+    
 }
 
 @property (nonatomic, retain) CvVideoCamera* camera;
@@ -73,6 +88,8 @@ CascadeClassifier eye;
 @property (nonatomic) NSInteger detectedFaces;
 @property (weak, nonatomic) IBOutlet UILabel *whoLabel;
 @property (weak, nonatomic) IBOutlet UILabel *levelLabel;
+
+//Function Primitive 20151019
 
 //ovelaying on images
 - (void)showPersonInfo;
@@ -88,6 +105,10 @@ CascadeClassifier eye;
 //face detection
 -(std::vector<cv::Rect>)detectFaces:(cv::Mat)refImg;
 -(std::vector<tracker_opencv_obj>)detectObjs:(cv::Mat)refImg coodObjs:(std::vector<cv::Rect>)coordinates;
+
+//feature detection
+
+-(std::vector<KeyPoint>)getKeyPoints:(cv::Mat)refImg;
 
 //face recognition
 -(cv::Mat)recogImgFromCoreData:(cv::Mat)refImg;

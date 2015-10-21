@@ -15,7 +15,11 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/video/video.hpp"
+#include "opencv2/calib3d/calib3d.hpp"
 
+#include "opencv2/features2d/features2d.hpp"
+
+#include <algorithm>
 
 @interface ViewController ()
 
@@ -32,6 +36,7 @@
 }
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
     [_camera adjustLayoutToInterfaceOrientation:orientation];
+    
 /*
     [_camera stop];
     switch (orientation)
@@ -74,8 +79,8 @@
 
     if(IS_IPHONE){
         _camera.defaultFPS = DEFAULT_FPS*3;
-        min_face_size=200;
-        _camera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetPhoto;
+        min_face_size=250;
+        _camera.defaultAVCaptureSessionPreset = AVCaptureSessionPresetMedium;
     }
     else{
         _camera.defaultFPS = DEFAULT_FPS;
@@ -91,6 +96,21 @@
     
     //timer=[NSTimer scheduledTimerWithTimeInterval:TIMER_FACE_REPEAT target:self selector:@selector(showPersonInfo) userInfo:nil repeats:YES];
     //timer=[NSTimer scheduledTimerWithTimeInterval:TIMER_FACE_REPEAT target:self selector:@selector(updateQueue) userInfo:nil repeats:YES];
+
+    //Feature
+    
+    ptrDetector= cv::ORB::create();
+    ptrExtractor= cv::ORB::create();
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"pen" ofType:@"bmp"];
+    const char * cpath = [path cStringUsingEncoding:NSUTF8StringEncoding];
+    sample = imread( cpath, CV_LOAD_IMAGE_UNCHANGED );
+    cvtColor(sample, sample_copy, CV_BGR2GRAY);
+
+    ptrDetector->detect(sample,sampleKeypoints);
+
+    ptrExtractor->compute(sample, sampleKeypoints, sampleDesctiptor);
+    sampleDesctiptor.convertTo(sampleDesctiptor, CV_32F);
 
     
     //[self startTrack:temp];
@@ -137,15 +157,97 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (void) processImage:(cv::Mat &)image
 {
     Mat image_copy;
     Mat image_copy2;
-    temp=image;
-    image=[self detectFace:image copy:image_copy];
+    
+    Mat descriptor_1;
+    
+    cvtColor(image, image_copy, CV_BGR2GRAY);
+    
+    //Feture Detection
     
 
+    std::vector<KeyPoint> keypoints;
+    
+    ptrDetector= cv::ORB::create();
+    ptrExtractor= cv::ORB::create();
+    
+    ptrDetector->detect(image_copy,keypoints);
+    ptrExtractor->compute(image_copy, keypoints, descriptor_1);
+    
+    
+    //drawKeypoints(image_copy, keypoints, image_copy2,cv::Scalar::all(-1),DrawMatchesFlags::DEFAULT);
+    //drawKeypoints(sample_copy , sampleKeypoints, image_copy2,cv::Scalar::all(-1),DrawMatchesFlags::DEFAULT);
+    
+    if(descriptor_1.type()!=CV_32F) {
+    descriptor_1.convertTo(descriptor_1, CV_32F);
+    }
+    if(sampleDesctiptor.type()!=CV_32F) {
+        sampleDesctiptor.convertTo(sampleDesctiptor, CV_32F);
+    }
+    //sampleDesctiptor.convertTo(sampleDesctiptor, CV_32F);
+
+    if (sampleDesctiptor.empty() ){
+        NSLog(@"sample_descriptor empty!!");
+    }else if (descriptor_1.empty()){
+        NSLog(@"descriptor_camera empty!!");
+    }
+    
+    FlannBasedMatcher matcher;
+    std::vector< DMatch > matches;
+    matcher.match(descriptor_1, sampleDesctiptor, matches);
+    
+    double max_dist = 0; double min_dist = 120;
+    //-- Quick calculation of max and min distances between keypoints
+    for( int i = 0; i < descriptor_1.rows; i++ )
+    { double dist = matches[i].distance;
+        if( dist < min_dist ) min_dist = dist;
+        if( dist > max_dist ) max_dist = dist;
+    }
+    std::vector< DMatch > good_matches;
+    
+    for( int i = 0; i < descriptor_1.rows; i++ )
+    { if( matches[i].distance <= max(2*min_dist, 0.02) )
+    { good_matches.push_back( matches[i]); }
+    }
+    
+    Mat img_matches;
+    
+    drawMatches( image_copy, keypoints, sample_copy ,sampleKeypoints,
+                good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+                vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    
+    
+    
+    image=img_matches;
+
+    
+    
+    temp=image;
+    //image=[self detectFace:image copy:image_copy];
+    
 }
+
+-(std::vector<KeyPoint>)getKeyPoints:(cv::Mat)refImg{
+    Mat refImg_copy;
+    cvtColor(refImg, refImg_copy, CV_BGR2GRAY);
+
+    cv::FeatureDetector detector;
+    cv::DescriptorExtractor extractor;
+    std::vector<KeyPoint> keypoints;
+
+    cv::Ptr<cv::FastFeatureDetector> ptrBrisk = cv::FastFeatureDetector::create();
+    cv::Ptr<cv::DescriptorExtractor> ptrExtractor;
+    
+    cv::Ptr<cv::FeatureDetector> detector_ptr;
+    ptrBrisk->detect(refImg_copy,keypoints);
+    
+    return keypoints;
+}
+
 -(Mat)detectFace:(Mat)image copy:(Mat)copy_image{
     //Haar cascading을 통하여 얼굴을 잡아낸다.
     //잡아낸 얼굴은 트래커에 전달한다.
@@ -158,7 +260,6 @@
     for(int i=0; i<(int)face_detect.size() ;i++){
        rectangle(image, face_detect[i],cv::Scalar(0,255,0),2);//Detection Rectengle
     }
-    
     return image;
  
 }
@@ -230,6 +331,71 @@
 
 
 
+-(void)featureDetection:(cv::Mat &)image{
+    
+    Mat image_copy;
+    Mat image_copy2;
+    
+    Mat descriptor_1;
+    
+    cvtColor(image, image_copy, CV_BGR2GRAY);
+    
+    //Feture Detection
+    
+    
+    cv::FeatureDetector detector;
+    cv::DescriptorExtractor extractor;
+    
+    std::vector<KeyPoint> keypoints;
+    
+    cv::Ptr<cv::FastFeatureDetector> ptrFeature = cv::FastFeatureDetector::create();
+    
+    ptrFeature->detect(image_copy,keypoints);
+    
+    ptrExtractor->compute(image_copy, keypoints, descriptor_1);
+    
+    
+    // drawKeypoints(image_copy, keypoints, image_copy2,cv::Scalar::all(-1),DrawMatchesFlags::DEFAULT);
+   // drawKeypoints(sample_copy, sampleKeypoints, image_copy2,cv::Scalar::all(-1),DrawMatchesFlags::DEFAULT);
+    
+    descriptor_1.convertTo(descriptor_1, CV_32F);
+    
+    if (sampleDesctiptor.empty() ){
+        NSLog(@"sample_descriptor empty!!");
+    }else if (descriptor_1.empty()){
+        NSLog(@"descriptor_camera empty!!");
+    }
+
+    FlannBasedMatcher matcher;
+    std::vector< DMatch > matches;
+    matcher.match(descriptor_1, sampleDesctiptor, matches);
+    
+    double max_dist = 0; double min_dist = 180;
+    //-- Quick calculation of max and min distances between keypoints
+    for( int i = 0; i < descriptor_1.rows; i++ )
+    { double dist = matches[i].distance;
+        if( dist < min_dist ) min_dist = dist;
+        if( dist > max_dist ) max_dist = dist;
+    }
+        
+    std::vector< DMatch > good_matches;
+    
+    for( int i = 0; i < descriptor_1.rows; i++ )
+    { if( matches[i].distance <= max(2*min_dist, 0.02) )
+    { good_matches.push_back( matches[i]); }
+    }
+    
+    Mat img_matches;
+    
+    drawMatches( image_copy, keypoints, sample_copy ,sampleKeypoints,
+                good_matches, img_matches, Scalar::all(-1), Scalar::all(-1),
+                vector<char>(), DrawMatchesFlags::NOT_DRAW_SINGLE_POINTS );
+    
+    
+    
+    image=image_copy2;
+    
+}
 
 
 

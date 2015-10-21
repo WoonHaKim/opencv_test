@@ -20,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ze0-Cq-GL2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ze0-Cq-GL2">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
@@ -86,8 +86,8 @@
                             <constraint firstItem="OGs-0R-hYI" firstAttribute="leading" secondItem="3hC-b3-njp" secondAttribute="trailing" constant="32" id="4LZ-jl-RCf"/>
                             <constraint firstItem="dzo-ve-VVc" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="56Y-z5-xMH"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3hC-b3-njp" secondAttribute="bottom" constant="70" id="5YK-hx-MXN"/>
-                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6Br-bQ-X4P"/>
-                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="TO1-Ou-XgY"/>
+                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="BqX-IL-tFG"/>
+                            <constraint firstItem="ze0-Cq-GL2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="GRF-VG-dpD"/>
                             <constraint firstItem="3hC-b3-njp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WGW-UR-EOZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wGa-e2-oqq" secondAttribute="trailing" constant="129" id="Zrs-S6-GIp"/>
                             <constraint firstItem="7an-wg-Hhg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="8" id="eQ6-Mt-Fhj"/>

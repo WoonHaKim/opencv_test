@@ -38,6 +38,14 @@
 		1BA2B1AB1BCE3BF0005011A3 /* UIImageCVMatConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */; settings = {ASSET_TAGS = (); }; };
 		1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1AC1BCF33DE005011A3 /* tracker_opencv.cpp */; settings = {ASSET_TAGS = (); }; };
 		1BA2B1B21BCF7050005011A3 /* subMiniViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8831BD611F300342827 /* pen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1BE3E8821BD611F200342827 /* pen.jpg */; settings = {ASSET_TAGS = (); }; };
+		1BE3E88B1BD62FEA00342827 /* kuh.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1BE3E88A1BD62FE900342827 /* kuh.bmp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8B31BD632F900342827 /* fasthessian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3E8A51BD632F900342827 /* fasthessian.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8B41BD632F900342827 /* integral.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3E8A71BD632F900342827 /* integral.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8B51BD632F900342827 /* ipoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3E8A91BD632F900342827 /* ipoint.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8B71BD632F900342827 /* surf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3E8AE1BD632F900342827 /* surf.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8B81BD632F900342827 /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1BE3E8B11BD632F900342827 /* utils.cpp */; settings = {ASSET_TAGS = (); }; };
+		1BE3E8BD1BD7894600342827 /* pen.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1BE3E8BC1BD7894600342827 /* pen.bmp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +110,22 @@
 		1BA2B1B01BCF7050005011A3 /* subMiniViewController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subMiniViewController.hpp; sourceTree = "<group>"; };
 		1BA2B1B11BCF7050005011A3 /* subMiniViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = subMiniViewController.mm; sourceTree = "<group>"; };
 		1BA2B1B31BD4878A005011A3 /* geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
+		1BE3E8821BD611F200342827 /* pen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pen.jpg; sourceTree = "<group>"; };
+		1BE3E88A1BD62FE900342827 /* kuh.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = kuh.bmp; sourceTree = "<group>"; };
+		1BE3E8A51BD632F900342827 /* fasthessian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fasthessian.cpp; sourceTree = "<group>"; };
+		1BE3E8A61BD632F900342827 /* fasthessian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fasthessian.h; sourceTree = "<group>"; };
+		1BE3E8A71BD632F900342827 /* integral.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = integral.cpp; sourceTree = "<group>"; };
+		1BE3E8A81BD632F900342827 /* integral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = integral.h; sourceTree = "<group>"; };
+		1BE3E8A91BD632F900342827 /* ipoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipoint.cpp; sourceTree = "<group>"; };
+		1BE3E8AA1BD632F900342827 /* ipoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ipoint.h; sourceTree = "<group>"; };
+		1BE3E8AB1BD632F900342827 /* kmeans.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kmeans.h; sourceTree = "<group>"; };
+		1BE3E8AD1BD632F900342827 /* responselayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = responselayer.h; sourceTree = "<group>"; };
+		1BE3E8AE1BD632F900342827 /* surf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = surf.cpp; sourceTree = "<group>"; };
+		1BE3E8AF1BD632F900342827 /* surf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = surf.h; sourceTree = "<group>"; };
+		1BE3E8B01BD632F900342827 /* surflib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = surflib.h; sourceTree = "<group>"; };
+		1BE3E8B11BD632F900342827 /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = utils.cpp; sourceTree = "<group>"; };
+		1BE3E8B21BD632F900342827 /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		1BE3E8BC1BD7894600342827 /* pen.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = pen.bmp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,11 +182,15 @@
 				1BA2B1671BCB9C11005011A3 /* openCVTestUITests */,
 				1BA2B13E1BCB9C11005011A3 /* Products */,
 				1BA2B1A61BCE3711005011A3 /* key.jpg */,
+				1BE3E88A1BD62FE900342827 /* kuh.bmp */,
+				1BE3E8821BD611F200342827 /* pen.jpg */,
+				1BE3E8BC1BD7894600342827 /* pen.bmp */,
 				1BA2B19B1BCCE6D2005011A3 /* haarcascade_frontalface_alt2.xml */,
 				1BA2B1A41BCE1475005011A3 /* haarcascade_profileface.xml */,
 				1BA2B19E1BCE1448005011A3 /* haarcascade_eye.xml */,
 				1BA2B1A01BCE1468005011A3 /* haarcascade_upperbody.xml */,
 				1BA2B1A21BCE146F005011A3 /* haarcascade_lowerbody.xml */,
+				1BE3E8B91BD6330100342827 /* openSURF */,
 				1BA2B18B1BCBA4B7005011A3 /* opencv2.framework */,
 			);
 			sourceTree = "<group>";
@@ -236,6 +264,26 @@
 				1BA2B1AA1BCE3BF0005011A3 /* UIImageCVMatConverter.mm */,
 			);
 			name = "Custom Converter";
+			sourceTree = "<group>";
+		};
+		1BE3E8B91BD6330100342827 /* openSURF */ = {
+			isa = PBXGroup;
+			children = (
+				1BE3E8A51BD632F900342827 /* fasthessian.cpp */,
+				1BE3E8A61BD632F900342827 /* fasthessian.h */,
+				1BE3E8A71BD632F900342827 /* integral.cpp */,
+				1BE3E8A81BD632F900342827 /* integral.h */,
+				1BE3E8A91BD632F900342827 /* ipoint.cpp */,
+				1BE3E8AA1BD632F900342827 /* ipoint.h */,
+				1BE3E8AB1BD632F900342827 /* kmeans.h */,
+				1BE3E8AD1BD632F900342827 /* responselayer.h */,
+				1BE3E8AE1BD632F900342827 /* surf.cpp */,
+				1BE3E8AF1BD632F900342827 /* surf.h */,
+				1BE3E8B01BD632F900342827 /* surflib.h */,
+				1BE3E8B11BD632F900342827 /* utils.cpp */,
+				1BE3E8B21BD632F900342827 /* utils.h */,
+			);
+			name = openSURF;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -349,8 +397,11 @@
 				1BA2B1A71BCE3711005011A3 /* key.jpg in Resources */,
 				1BA2B19F1BCE1448005011A3 /* haarcascade_eye.xml in Resources */,
 				1BA2B18E1BCBAF1D005011A3 /* un1.png in Resources */,
+				1BE3E8831BD611F300342827 /* pen.jpg in Resources */,
+				1BE3E88B1BD62FEA00342827 /* kuh.bmp in Resources */,
 				1BA2B1A31BCE146F005011A3 /* haarcascade_lowerbody.xml in Resources */,
 				1BA2B14B1BCB9C11005011A3 /* Main.storyboard in Resources */,
+				1BE3E8BD1BD7894600342827 /* pen.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,12 +428,17 @@
 			files = (
 				1BA2B1B21BCF7050005011A3 /* subMiniViewController.mm in Sources */,
 				1BA2B1AE1BCF33DE005011A3 /* tracker_opencv.cpp in Sources */,
+				1BE3E8B71BD632F900342827 /* surf.cpp in Sources */,
+				1BE3E8B31BD632F900342827 /* fasthessian.cpp in Sources */,
 				1BA2B19D1BCCED98005011A3 /* haarcascade_frontalface_alt2.xml in Sources */,
 				1BA2B1481BCB9C11005011A3 /* ViewController.mm in Sources */,
+				1BE3E8B41BD632F900342827 /* integral.cpp in Sources */,
 				1BA2B1AB1BCE3BF0005011A3 /* UIImageCVMatConverter.mm in Sources */,
 				1BA2B1451BCB9C11005011A3 /* AppDelegate.m in Sources */,
 				1BA2B14E1BCB9C11005011A3 /* openCVTest.xcdatamodeld in Sources */,
+				1BE3E8B51BD632F900342827 /* ipoint.cpp in Sources */,
 				1BA2B1421BCB9C11005011A3 /* main.mm in Sources */,
+				1BE3E8B81BD632F900342827 /* utils.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +588,8 @@
 				INFOPLIST_FILE = openCVTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bnsworks.openCVTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -553,6 +611,8 @@
 				INFOPLIST_FILE = openCVTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bnsworks.openCVTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -627,6 +687,7 @@
 				1BA2B16F1BCB9C11005011A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1BA2B1701BCB9C11005011A3 /* Build configuration list for PBXNativeTarget "openCVTestTests" */ = {
 			isa = XCConfigurationList;
@@ -635,6 +696,7 @@
 				1BA2B1721BCB9C11005011A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1BA2B1731BCB9C11005011A3 /* Build configuration list for PBXNativeTarget "openCVTestUITests" */ = {
 			isa = XCConfigurationList;
@@ -643,6 +705,7 @@
 				1BA2B1751BCB9C11005011A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
