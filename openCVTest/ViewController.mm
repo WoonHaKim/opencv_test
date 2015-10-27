@@ -36,7 +36,6 @@
 }
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
     [_camera adjustLayoutToInterfaceOrientation:orientation];
-    
 /*
     [_camera stop];
     switch (orientation)
