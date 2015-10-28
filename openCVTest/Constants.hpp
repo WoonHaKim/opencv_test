@@ -14,4 +14,10 @@
 
 #define CORNER_PIXEL_THRESHOLD 10
 
+#define DEFAULT_FPS 15
+
+#define DETECT_LINE_METHOD_CANNY 0
+#define DETECT_LINE_METHOD_GAUSSIAN 1
+#define DETECT_LINE_METHOD_HYBRID 2
+
 #endif /* Constants_h */
