@@ -25,7 +25,7 @@
 #define DETECT_LINE_METHOD_CONTOUR 3
 
 //Coutour 설정
-#define CONTOUR_RECT_RATIO_LIMIT 2
+#define CONTOUR_RECT_RATIO_LIMIT 2.5
 #define CONTOUR_RECT_AREA_LIMIT 120000
 
 //코너를 몇 픽셀 이내의 선들로 결정할지 지정
