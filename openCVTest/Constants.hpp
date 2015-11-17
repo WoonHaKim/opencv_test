@@ -17,12 +17,21 @@
 #import <opencv2/core/core_c.h>
 #import <opencv2/imgcodecs/ios.h>
 
+#import <Album.h>
+#import <MediaPlayerViewController.h>
 
-typedef struct objDetect{
+typedef struct screenObject{
     int objID;
-    int trackFail;
-    cv::Rect onShape;
-    cv::Point2f location;
+    int objTrackFail;
+
+    int objPlay;
+
+    Album* objAlbum;
+    MediaPlayerViewController *objVC;
+
+
+    cv::Rect objFollowRect;
+    cv::Point2f objLocation;
 
 }object;
 
