@@ -16,6 +16,7 @@
 #import <opencv2/videoio/cap_ios.h>
 #import <opencv2/core/core_c.h>
 #import <opencv2/imgcodecs/ios.h>
+#import <opencv2/stitching/detail/util.hpp>
 
 #import <Album.h>
 #import <MediaPlayerViewController.h>
@@ -77,7 +78,7 @@ typedef struct albumSearchResult{
 #define DETECT_LINE_METHOD_CONTOUR 3
 
 //Coutour 설정
-#define CONTOUR_RECT_RATIO_LIMIT 1.414
+#define CONTOUR_RECT_RATIO_LIMIT 1.61803
 #define CONTOUR_RECT_AREA_LIMIT 12000
 
 //코너를 몇 픽셀 이내의 선들로 결정할지 지정
@@ -100,10 +101,13 @@ typedef struct albumSearchResult{
 
 #define DETECT_VEC_THRESHOLD 7
 
+//Optical Flow 검출
+
+#define OPTICAL_MAX_CORNERS 70
 
 //오버레이 정보창 가로 세로
 
 #define OVERLAY_WIDTH 300
-#define OVERLAY_HEIGHT 200
+#define OVERLAY_HEIGHT 160
 
 #endif /* Constants_h */
