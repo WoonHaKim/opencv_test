@@ -34,6 +34,7 @@ typedef struct screenObject{
     cv::Rect objFollowRect;
     cv::Point2f objLocation;
 
+    cv::Mat objInitMat;
 }object;
 
 typedef struct rectComp{
@@ -99,7 +100,7 @@ typedef struct albumSearchResult{
 #define DETECT_FEATURE_AKAZE 4
 
 
-#define DETECT_VEC_THRESHOLD 7
+#define DETECT_VEC_THRESHOLD 6
 
 //Optical Flow 검출
 
@@ -107,7 +108,7 @@ typedef struct albumSearchResult{
 
 //오버레이 정보창 가로 세로
 
-#define OVERLAY_WIDTH 300
-#define OVERLAY_HEIGHT 160
+#define OVERLAY_WIDTH 200
+#define OVERLAY_HEIGHT 200
 
 #endif /* Constants_h */
