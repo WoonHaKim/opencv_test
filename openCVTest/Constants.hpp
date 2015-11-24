@@ -100,7 +100,7 @@ typedef struct albumSearchResult{
 #define DETECT_FEATURE_AKAZE 4
 
 
-#define DETECT_VEC_THRESHOLD 6
+#define DETECT_VEC_THRESHOLD 7
 
 //Optical Flow 검출
 
