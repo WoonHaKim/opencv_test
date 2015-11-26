@@ -41,7 +41,12 @@ typedef struct rectComp{
     std::vector<cv::Rect>rect;
     std::vector<cv::RotatedRect>rotRect;
 }combinedRect;
-
+/*
+typedef struct rectComp{
+    cv::Rect rect;
+    cv::RotatedRect rotRect;
+}combinedRect;
+*/
 typedef struct albumSearchResult{
     std::vector<cv::KeyPoint> KeyPoints;
     cv::Mat descriptor;
@@ -51,7 +56,7 @@ typedef struct albumSearchResult{
 #define IS_IPHONE [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone
 #define IS_IPAD [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad
 
-#define COVER_MAX 4
+#define COVER_MAX 6
 
 //전체 Flow Signal State
 
@@ -100,11 +105,15 @@ typedef struct albumSearchResult{
 #define DETECT_FEATURE_AKAZE 4
 
 
-#define DETECT_VEC_THRESHOLD 7
+#define DETECT_VEC_THRESHOLD 6
 
 //Optical Flow 검출
 
 #define OPTICAL_MAX_CORNERS 70
+
+//Tracking 알고리즘 팩터
+
+#define TRACKING_INTERSECT_FACTOR 0.7
 
 //오버레이 정보창 가로 세로
 
